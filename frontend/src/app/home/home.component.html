@@ -1,0 +1,14 @@
+<ng-container>
+	<h1>Greeting</h1>
+	<div *ngIf="greeting" [hidden]="!isAuthenticated()">
+		<h2>Athenticated as : {{ getUserName() }} </h2>
+		<h3>Roles :</h3>
+		<p *ngFor="let role of getUserRoles()">{{ role.authority }}</p>
+		<p>The ID is {{greeting.id}}</p>
+		<p>The content is {{greeting.content}}</p>
+		<p>User Role specific: {{ userData | json }} </p>
+	</div>
+	<div [hidden]="isAuthenticated()">
+		<p>Login to see your greeting</p>
+	</div>
+</ng-container>

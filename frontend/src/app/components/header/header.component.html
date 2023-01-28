@@ -1,0 +1,9 @@
+<header class="container">
+    <nav>
+      <ul class="nav nav-pills">
+        <li><a routerLinkActive="active" routerLink="/home">Home</a></li>
+        <li *ngIf="!isAuthenticated()"><a routerLinkActive="active" routerLink="/login">Login</a></li>
+        <li *ngIf="isAuthenticated()"><a  (click)="logout()">Logout</a></li>
+      </ul>
+    </nav>
+  </header>
