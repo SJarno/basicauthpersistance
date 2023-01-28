@@ -1,6 +1,4 @@
 # Basic Auth with Spring Boot and Angular
-[![Build and Test Spring Boot Project](https://github.com/SJarno/basicauthinmem/actions/workflows/gradle.yml/badge.svg)](https://github.com/SJarno/basicauthinmem/actions/workflows/gradle.yml)
-[![codecov](https://codecov.io/gh/SJarno/basicauthinmem/branch/main/graph/badge.svg?token=H5E3IEGQBQ)](https://codecov.io/gh/SJarno/basicauthinmem)
 
 Basic auth with Spring Boot, Spring Security 6 and persisting in H2 database
 
