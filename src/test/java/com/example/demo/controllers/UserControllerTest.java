@@ -3,10 +3,16 @@ package com.example.demo.controllers;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.web.servlet.WebMvcTest;
+import org.springframework.boot.test.mock.mockito.MockBean;
+import org.springframework.context.annotation.Import;
 import org.springframework.security.test.context.support.WithAnonymousUser;
 import org.springframework.security.test.context.support.WithMockUser;
 import org.springframework.test.web.servlet.MockMvc;
 
+import com.example.demo.configuration.security.CustomUserDetailsService;
+import com.example.demo.configuration.security.SecurityConfiguration;
+import com.example.demo.repositories.AuthorityRepository;
+import com.example.demo.repositories.UserDaoRepository;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
@@ -18,11 +24,22 @@ import static org.hamcrest.Matchers.*;
 
 import static org.springframework.test.web.servlet.result.MockMvcResultHandlers.*;
 
+@SuppressWarnings("unchecked")
 @WebMvcTest(controllers = UserController.class)
+@Import(SecurityConfiguration.class)
 public class UserControllerTest {
 
     @Autowired
     private MockMvc mockMvc;
+
+    @MockBean
+    private UserDaoRepository userDaoRepository;
+
+    @MockBean
+    private AuthorityRepository authorityRepository;
+
+    @MockBean
+    private CustomUserDetailsService userDetailsService;
 
     @Autowired
     private ObjectMapper mapper;
@@ -44,6 +61,7 @@ public class UserControllerTest {
                 .andExpect(jsonPath("$.user", is("Should display to user, super and admin")))
                 .andReturn().getResponse().getContentAsString();
         
+               
         Map<String, String> data = mapper.readValue(result, Map.class);
         assertEquals(1, data.size());
         assertEquals("Should display to user, super and admin", data.get("user"));
