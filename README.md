@@ -22,11 +22,11 @@ After this, from the root of the project run ".\gradlew bootRun"
 Currently unable to resolve situation with Cors configuration. But then again one can always use ng build --watch for local development.
 
 ## Status
-Upcoming
+Currently user are persisted in h2 database with user and superuser. 
 
 
 ## Authentication
-Upcoming
+No-op encoder in use - for testing purposes
 
 ## Next steps
 Upcoming
