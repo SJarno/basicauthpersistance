@@ -23,8 +23,4 @@ public class Authority {
     @Enumerated(EnumType.STRING)
     private RoleName name;
 
-    //@ManyToOne(fetch = FetchType.EAGER)
-    //@OneToMany(fetch = FetchType.EAGER)
-    //@JoinColumn(name = "user_id", nullable = true)
-    //private UserDao user;
 }
