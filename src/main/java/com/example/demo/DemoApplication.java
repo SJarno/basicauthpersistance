@@ -4,7 +4,6 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
-import org.apache.catalina.User;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
@@ -17,7 +16,6 @@ import com.example.demo.repositories.AuthorityRepository;
 import com.example.demo.repositories.UserDaoRepository;
 
 import jakarta.annotation.PostConstruct;
-import jakarta.transaction.Transactional;
 
 @SpringBootApplication
 public class DemoApplication {
@@ -67,6 +65,10 @@ public class DemoApplication {
 		superUserRoles.add(userRole);
 		superUserRoles.add(superUserRole);
 		superUser.setAuthorities(superUserRoles);
+		superUser.setAccountNonExpired(true);
+		superUser.setAccountNonLocked(true);
+		superUser.setCredentialsNonExpired(true);
+		superUser.setEnabled(true);
 		
 		this.repository.saveAll(Arrays.asList(user, superUser));
 		
