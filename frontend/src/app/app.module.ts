@@ -11,13 +11,21 @@ import { AuthService } from './services/auth.service';
 import { XhrInterceptor } from './interceptors/xhr.interceptor';
 import { HeaderComponent } from './components/header/header.component';
 import { httpInterceptorProviders } from './interceptors';
+import { UserComponent } from './components/user/user.component';
+import { AdminComponent } from './components/admin/admin.component';
+import { SuperuserComponent } from './components/superuser/superuser.component';
+import { HasRoleDirective } from './directives/has-role.directive';
 
 @NgModule({
   declarations: [
     AppComponent,
     HomeComponent,
     LoginComponent,
-    HeaderComponent
+    HeaderComponent,
+    UserComponent,
+    AdminComponent,
+    SuperuserComponent,
+    HasRoleDirective
   ],
   imports: [
     BrowserModule,
