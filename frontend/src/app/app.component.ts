@@ -14,17 +14,12 @@ export class AppComponent {
   greeting: any = {};
   //user?: AuthResponse;
 
-  constructor(private app: AuthService) {
+  constructor(private authService: AuthService) {
 
   }
   ngOnInit() {
     console.log('1.Authenticating on top level')
-    this.app.authenticate(undefined, undefined).subscribe();
-    
-  }
-  isAuthenticated() {
-    console.log('4.After auth sub == ',this.app.user);
-    return this.app.user?.authenticated;
+    this.authService.authenticate(undefined, undefined).subscribe();
     
   }
 
