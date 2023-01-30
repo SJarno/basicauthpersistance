@@ -10,10 +10,8 @@ import { AuthResponse } from './models/AuthResponse';
   styleUrls: ['./app.component.css']
 })
 export class AppComponent {
-  title = 'Demo';
-  greeting: any = {};
-  //user?: AuthResponse;
-
+  title = 'Persistance Authentication';
+  
   constructor(private authService: AuthService) {
 
   }

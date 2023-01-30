@@ -1,6 +1,8 @@
 header {
     background-color: blue;
     padding: 1rem;
+    color: rgb(203, 205, 206);
+    text-align: center;
 }
 
 nav {}

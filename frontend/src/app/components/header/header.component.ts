@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { AuthService } from 'src/app/services/auth.service';
 import { AuthResponse } from 'src/app/models/AuthResponse';
@@ -9,6 +9,10 @@ import { AuthResponse } from 'src/app/models/AuthResponse';
   styleUrls: ['./header.component.css']
 })
 export class HeaderComponent implements OnInit {
+
+  @Input()
+  title?: string;
+
   user?: AuthResponse;
   constructor(private authService: AuthService, private router: Router) { }
 
