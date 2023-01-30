@@ -13,27 +13,27 @@ export class LoginComponent implements OnInit {
 
   error = false;
   credentials = {username: '', password: ''};
-  constructor(private app: AuthService, private http: HttpClient, private router: Router) { }
+  constructor(private authService: AuthService, private http: HttpClient, private router: Router) { }
 
   ngOnInit(): void {
     
   }
   login() {
-  this.app.authenticate(this.credentials, () => {
+  this.authService.authenticate(this.credentials, () => {
       this.router.navigateByUrl('/');
     }).subscribe((auth: AuthResponse) => {
       console.log('Login ==',auth);
       if (auth == undefined) {
         this.error = true;
-        this.app.user = undefined;
+        this.authService.user = undefined;
       } else {
         this.error = false;
-        this.app.user = auth;
-        this.router.navigateByUrl('/');
+        this.authService.user = auth;
+        this.router.navigateByUrl('/home');
       }
       
     });
-    console.log('result after login ==', this.app.user);
+    console.log('result after login ==', this.authService.user);
     //return false;
   }
 

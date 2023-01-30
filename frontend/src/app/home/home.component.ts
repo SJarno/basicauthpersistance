@@ -16,27 +16,28 @@ export class HomeComponent implements OnInit {
   greeting?: any;
   userData?: any;
   url: string = environment.baseUrl;
-
   //user?: AuthResponse;
+  userName: any;
 
-  constructor(private app: AuthService, private http: HttpClient, private dataService: DataService) { }
+  constructor(private authService: AuthService, private http: HttpClient, private dataService: DataService) { }
 
   ngOnInit(): void {
+    this.userName = this.getUserName();
     this.http.get(`${this.url}resource`).subscribe(data => this.greeting = data);
     this.getUserData();
 
 
   }
   isAuthenticated(): boolean | undefined {
-    return this.app.user?.authenticated;
+    return this.authService.user?.authenticated;
   
   }
   getUserName() {
-    return this.app.user?.name;
+    return this.authService.user?.username;
   }
   getUserRoles(): Role[] | undefined{
-    console.log('Authorities ==', this.app.user?.roles);
-    return this.app.user?.roles;
+    console.log('Authorities ==', this.authService.user?.roles);
+    return this.authService.user?.roles;
   }
   getUserData() {
     console.log('Role at this point ',this.getUserName());
