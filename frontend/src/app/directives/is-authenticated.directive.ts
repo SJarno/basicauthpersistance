@@ -9,8 +9,6 @@ import { AuthService } from '../services/auth.service';
 export class IsAuthenticatedDirective implements OnDestroy {
 
   private user?: AuthResponse;
-  private authenticated: boolean = false;
-
 
   constructor(private templateRef: TemplateRef<any>,
     private viewContainer: ViewContainerRef,
@@ -24,7 +22,6 @@ export class IsAuthenticatedDirective implements OnDestroy {
   set isAuthenticated(authNeeded: boolean) {
     this.authService.userSubject.subscribe((user: AuthResponse) => {
       this.user = user;
-      this.authenticated = user.authenticated;
       this.updateView(authNeeded);
     });
   }
