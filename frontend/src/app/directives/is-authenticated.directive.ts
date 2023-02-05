@@ -6,11 +6,11 @@ import { AuthService } from '../services/auth.service';
 @Directive({
   selector: '[isAuthenticated]'
 })
-export class IsAuthenticatedDirective implements OnDestroy{
+export class IsAuthenticatedDirective implements OnDestroy {
 
   private user?: AuthResponse;
   private authenticated: boolean = false;
-  
+
 
   constructor(private templateRef: TemplateRef<any>,
     private viewContainer: ViewContainerRef,
@@ -28,22 +28,9 @@ export class IsAuthenticatedDirective implements OnDestroy{
       this.updateView(authNeeded);
     });
   }
-  private updateView(authenticated: boolean) {
-    if (authenticated) {
-      this.displayIfAuthenticated();
-    } else {
-      this.displayIfNotAuthenticatd();
-    }
-  }
-  private displayIfAuthenticated() {
+  private updateView(authNeeded: boolean) {
     this.viewContainer.clear();
-    if (this.authenticated) {
-      this.viewContainer.createEmbeddedView(this.templateRef);
-    }
-  }
-  private displayIfNotAuthenticatd() {
-    this.viewContainer.clear();
-    if (!this.authenticated) {
+    if (this.user?.authenticated === authNeeded) {
       this.viewContainer.createEmbeddedView(this.templateRef);
     }
   }
