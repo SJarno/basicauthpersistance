@@ -3,13 +3,13 @@
     <nav>
       <ul class="nav nav-pills">
         <li><a routerLinkActive="active" routerLink="/home">Home</a></li>
-        <li *appHasRole="'ROLE_USER'"><a routerLink="active" routerLink="/user-page">User</a></li>
-        <li *appHasRole="'ROLE_SUPERUSER'"><a routerLink="active" routerLink="/super-page">Super</a></li>
-        <li *appHasRole="'ROLE_ADMIN'"><a routerLink="active" routerLink="/admin-page">Admin</a></li>
+        <li *hasRole="'ROLE_USER'"><a routerLink="active" routerLink="/user-page">User</a></li>
+        <li *hasRole="'ROLE_SUPERUSER'"><a routerLink="active" routerLink="/super-page">Super</a></li>
+        <li *hasRole="'ROLE_ADMIN'"><a routerLink="active" routerLink="/admin-page">Admin</a></li>
         <!-- <li *ngIf="!isAuthenticated()"><a routerLinkActive="active" routerLink="/login">Login</a></li>
         <li *ngIf="isAuthenticated()"><a  (click)="logout()">Logout</a></li> -->
-        <li *appIsAuthenticated="false"><a routerLinkActive="active" routerLink="/login">Login</a></li>
-        <li *appIsAuthenticated="true"><a  (click)="logout()">Logout</a></li>
+        <li *isAuthenticated="false"><a routerLinkActive="active" routerLink="/login">Login</a></li>
+        <li *isAuthenticated="true"><a  (click)="logout()">Logout</a></li>
       </ul>
     </nav>
   </header>

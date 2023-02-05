@@ -1,26 +1,29 @@
-import { Directive, Input, OnInit, TemplateRef, ViewContainerRef } from '@angular/core';
+import { Directive, Input, OnDestroy, OnInit, TemplateRef, ViewContainerRef } from '@angular/core';
 import { AuthResponse } from '../models/AuthResponse';
 import { Role } from '../models/Role';
 import { AuthService } from '../services/auth.service';
 
 @Directive({
-  selector: '[appHasRole]'
+  selector: '[hasRole]'
 })
-export class HasRoleDirective {
+export class HasRoleDirective implements OnDestroy{
 
   private user?: AuthResponse;
-  private hasRole?: boolean;
+  private role?: boolean;
 
   constructor(private authService: AuthService,
     private viewContainer: ViewContainerRef,
     private templateRef: TemplateRef<any>) { }
 
+  ngOnDestroy(): void {
+    this.authService.userSubject.unsubscribe();
+  }
+
   @Input()
-  set appHasRole(role: string) {
-    console.log('Checking if has role!')
+  set hasRole(role: string) {
     this.authService.userSubject.subscribe(user => {
       this.user = user;
-      this.hasRole = this.checkRole(role);
+      this.role = this.checkRole(role);
       this.updateView();
     });
   }
@@ -30,7 +33,7 @@ export class HasRoleDirective {
   }
   private updateView() {
     this.viewContainer.clear();
-    if (this.hasRole) {
+    if (this.role) {
       this.viewContainer.createEmbeddedView(this.templateRef);
     }
   }
