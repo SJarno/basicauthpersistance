@@ -17,7 +17,7 @@ export class AppComponent {
   }
   ngOnInit() {
     console.log('1.Authenticating on top level')
-    this.authService.authenticate(undefined, undefined).subscribe();
+    this.authService.authenticate(undefined).subscribe();
     
   }
 

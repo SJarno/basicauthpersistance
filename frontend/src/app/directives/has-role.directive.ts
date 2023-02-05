@@ -1,4 +1,5 @@
 import { Directive, Input, OnInit, TemplateRef, ViewContainerRef } from '@angular/core';
+import { AuthResponse } from '../models/AuthResponse';
 import { Role } from '../models/Role';
 import { AuthService } from '../services/auth.service';
 
@@ -7,7 +8,8 @@ import { AuthService } from '../services/auth.service';
 })
 export class HasRoleDirective {
 
-
+  private user?: AuthResponse;
+  private hasRole?: boolean;
 
   constructor(private authService: AuthService,
     private viewContainer: ViewContainerRef,
@@ -15,16 +17,21 @@ export class HasRoleDirective {
 
   @Input()
   set appHasRole(role: string) {
-    console.log('Role being passed ', role);
-    if (this.authService.user) {
-      const roles: Role[] | undefined = this.authService.user?.roles;
-      if (roles?.some(r => r.authority === role)) {
-        this.viewContainer.createEmbeddedView(this.templateRef);
-      } else {
-        this.viewContainer.clear();
-      }
-
-
+    console.log('Checking if has role!')
+    this.authService.userSubject.subscribe(user => {
+      this.user = user;
+      this.hasRole = this.checkRole(role);
+      this.updateView();
+    });
+  }
+  private checkRole(role: string) {
+    const roles: Role[] | undefined = this.user?.roles;
+    return roles?.some(r => r.authority == role) || false;
+  }
+  private updateView() {
+    this.viewContainer.clear();
+    if (this.hasRole) {
+      this.viewContainer.createEmbeddedView(this.templateRef);
     }
   }
 

@@ -1,6 +1,6 @@
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { catchError, map, Observable, of, tap } from 'rxjs';
+import { BehaviorSubject, catchError, map, Observable, of, tap } from 'rxjs';
 import { environment } from 'src/environments/environment';
 import { AuthResponse } from '../models/AuthResponse';
 
@@ -10,13 +10,18 @@ import { AuthResponse } from '../models/AuthResponse';
 export class AuthService {
 
   user?: AuthResponse;
-  authenticated: boolean = false;
+  userSubject = new BehaviorSubject<AuthResponse>(
+    {
+      username: '',
+      authenticated: false,
+      roles: []
+    });
   url: string = environment.baseUrl;
 
   constructor(private http: HttpClient) { }
 
 
-  authenticate(credentials: any, _callback: any): Observable<any> {
+  authenticate(credentials: any): Observable<any> {
     const headers = new HttpHeaders(credentials ? {
       authorization: 'Basic ' + window.btoa(credentials.username + ':' + credentials.password)
     } : {});
@@ -25,7 +30,9 @@ export class AuthService {
       tap(response => {
         console.log('The authresponse == ', response);
         this.user = response;
+        this.userSubject.next(this.user);
         console.log('after assign', this.user);
+        console.log('after assign, user subject == ', this.userSubject);
       }),
       map((response: AuthResponse) => {
         return response;
@@ -39,7 +46,12 @@ export class AuthService {
       }),
       catchError(this.handleError<any>('Logging out error')))
       .subscribe(() => {
-        this.user = undefined;
+        this.userSubject.next({
+          username: '',
+          authenticated: false,
+          roles: []
+        })
+        //this.user = undefined;
       });
     return true;
   }

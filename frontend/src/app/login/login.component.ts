@@ -12,29 +12,23 @@ import { AuthResponse } from '../models/AuthResponse';
 export class LoginComponent implements OnInit {
 
   error = false;
-  credentials = {username: '', password: ''};
+  credentials = { username: '', password: '' };
   constructor(private authService: AuthService, private http: HttpClient, private router: Router) { }
 
   ngOnInit(): void {
-    
+
   }
   login() {
-  this.authService.authenticate(this.credentials, () => {
-      this.router.navigateByUrl('/');
-    }).subscribe((auth: AuthResponse) => {
-      console.log('Login ==',auth);
-      if (auth == undefined) {
-        this.error = true;
-        this.authService.user = undefined;
-      } else {
+    this.authService.authenticate(this.credentials).subscribe((auth: AuthResponse) => {
+      if (auth) {
         this.error = false;
-        this.authService.user = auth;
         this.router.navigateByUrl('/home');
+      } else {
+        this.error = true;
       }
-      
+
     });
-    console.log('result after login ==', this.authService.user);
-    //return false;
+
   }
 
 }

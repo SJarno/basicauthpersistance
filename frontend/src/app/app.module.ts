@@ -15,6 +15,7 @@ import { UserComponent } from './components/user/user.component';
 import { AdminComponent } from './components/admin/admin.component';
 import { SuperuserComponent } from './components/superuser/superuser.component';
 import { HasRoleDirective } from './directives/has-role.directive';
+import { IsAuthenticatedDirective } from './directives/is-authenticated.directive';
 
 @NgModule({
   declarations: [
@@ -25,7 +26,8 @@ import { HasRoleDirective } from './directives/has-role.directive';
     UserComponent,
     AdminComponent,
     SuperuserComponent,
-    HasRoleDirective
+    HasRoleDirective,
+    IsAuthenticatedDirective
   ],
   imports: [
     BrowserModule,
