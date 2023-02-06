@@ -54,7 +54,7 @@ public class SecurityConfiguration {
         // https://docs.spring.io/spring-security/reference/5.8/migration/servlet/exploits.html
         CsrfTokenRequestAttributeHandler requestHandler = new CsrfTokenRequestAttributeHandler();
         requestHandler.setCsrfRequestAttributeName(null);
-        // requestHandler.setCsrfRequestAttributeName("_csrf");//possible break here
+        //requestHandler.setCsrfRequestAttributeName("_csrf");//possible break here
 
         http
                 // Session management
@@ -68,6 +68,8 @@ public class SecurityConfiguration {
                 .authorizeHttpRequests(auth -> auth
                         .requestMatchers(clientSideResources).permitAll()
                         .anyRequest().authenticated())
+                .exceptionHandling((exceptionHandling) -> exceptionHandling
+                        .authenticationEntryPoint((request, response, exception) -> response.sendRedirect("/")))
                 .httpBasic()
                 .and()
                 .csrf((csrf) -> csrf

@@ -23,7 +23,8 @@ const routes: Routes = [
     canActivate: [RoleGuard],
     data: { role: 'ROLE_SUPERUSER' }
   },
-  { path: 'admin-page', component: AdminComponent }
+  { path: 'admin-page', component: AdminComponent },
+  { path: '**', pathMatch: 'full', redirectTo: 'home' }
 ];
 
 @NgModule({
