@@ -1,6 +1,6 @@
 import { Injectable, OnInit } from '@angular/core';
 import { ActivatedRouteSnapshot, CanActivate, Router, RouterStateSnapshot, UrlTree } from '@angular/router';
-import { first, map, Observable } from 'rxjs';
+import { catchError, first, map, Observable } from 'rxjs';
 import { AuthResponse } from '../models/AuthResponse';
 import { Role } from '../models/Role';
 import { AuthService } from '../services/auth.service';
@@ -34,6 +34,7 @@ export class RoleGuard implements CanActivate {
         }
       })); */
     return this.authService.authenticate(undefined).pipe(
+      first(),
       map((user: AuthResponse) => {
         if (user.authenticated) {
           const roles: Role[] | undefined = user.roles;
