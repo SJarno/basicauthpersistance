@@ -46,10 +46,10 @@ public class UserControllerTest {
 
     @WithAnonymousUser
     @Test
-    void testGetUserPathWithAnonymousUser_is401() throws Exception {
+    void testGetUserPathWithAnonymousUser_is302() throws Exception {
         this.mockMvc.perform(get("/role-user"))
                 .andDo(print())
-                .andExpect(status().is(401));
+                .andExpect(status().is(302));
     }
 
     @WithMockUser(roles = "USER")

@@ -38,10 +38,10 @@ public class AuthControllerTest {
 
     @WithAnonymousUser
     @Test
-    void testUserWithAnonymous_Is401() throws Exception {
+    void testUserWithAnonymous_Is302() throws Exception {
         this.mockMvc.perform(get("/user"))
                 .andDo(print())
-                .andExpect(status().is(401));
+                .andExpect(status().is(302));
     }
 
     @WithMockUser(username = "user", password = "pass")

@@ -44,10 +44,10 @@ public class GreetingControllerTest {
 
     @WithAnonymousUser
     @Test
-    void testGreetinWithAnonymousUser_is401() throws Exception {
+    void testGreetinWithAnonymousUser_is302() throws Exception {
         this.mockMvc.perform(get("/resource"))
                 .andDo(print()).andExpect(status()
-                        .is(401));
+                        .is(302));
     }
 
     @WithMockUser(username = "user", password = "pass")
