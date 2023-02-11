@@ -30,7 +30,7 @@ jobs:
       
     - name: Backend coverage to Codecov
       run: bash <(curl -s https://codecov.io/bash)
-      
+
     - name: Set up NodeJS
       uses: actions/setup-node@v2
       with:
@@ -38,6 +38,9 @@ jobs:
 
     - name: Install Angular dependencies
       run: npm ci
+
+    - name: Install npm dependencies
+      run: npm install
 
     - name: Run Angular tests and generate coverage report
       run: ng test --no-watch --code-coverage
