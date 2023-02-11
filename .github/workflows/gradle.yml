@@ -31,6 +31,9 @@ jobs:
     - name: Backend coverage to Codecov
       run: bash <(curl -s https://codecov.io/bash)
 
+    - name: Change working directory
+      run: cd frontend
+
     - name: Set up NodeJS
       uses: actions/setup-node@v2
       with:
