@@ -35,7 +35,7 @@ jobs:
       run: ls -alt
 
     - name: Change working directory
-      run: cd frontend
+      run: run: cd /home/runner/work/basicauthpersistance/basicauthpersistance/frontend
 
     - name: Print current working directory
       run: ls -alt
