@@ -31,11 +31,10 @@ jobs:
     - name: Backend coverage to Codecov
       run: bash <(curl -s https://codecov.io/bash)
 
-    - name: Print current working directory
-      run: ls -alt
-
-    - name: Change working directory
-      run: cd /home/runner/work/basicauthpersistance/basicauthpersistance/frontend
+    - name: Check out frontend code
+      uses: actions/checkout@v2
+      with:
+        paths: frontend
 
     - name: Print current working directory
       run: ls -alt
