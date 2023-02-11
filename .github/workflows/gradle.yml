@@ -32,13 +32,13 @@ jobs:
       run: bash <(curl -s https://codecov.io/bash)
 
     - name: Print current working directory
-      run: pwd
+      run: ls -alt
 
     - name: Change working directory
       run: cd frontend
 
     - name: Print current working directory
-      run: pwd
+      run: ls -alt
 
     - name: Set up NodeJS
       uses: actions/setup-node@v2
