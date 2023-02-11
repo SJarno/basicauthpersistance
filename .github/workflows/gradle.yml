@@ -31,8 +31,14 @@ jobs:
     - name: Backend coverage to Codecov
       run: bash <(curl -s https://codecov.io/bash)
 
+    - name: Print current working directory
+      run: echo "Current working directory: $(pwd)"
+
     - name: Change working directory
       run: cd frontend
+
+    - name: Print current working directory
+      run: echo "Current working directory: $(pwd)"
 
     - name: Set up NodeJS
       uses: actions/setup-node@v2
