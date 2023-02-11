@@ -1,6 +1,7 @@
 <section>
-	<div class="alert alert-danger" [hidden]="!error">
-		There was a problem logging in. Please try again.
+	<div class="alert">
+		<p class="info-login" [hidden]="error">Please login</p>
+		<p class="alert-danger" [hidden]="!error">There was a problem logging in. Please try again.</p>
 	</div>
 	<form role="form" (submit)="login()">
 		<div class="form-group">

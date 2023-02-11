@@ -52,7 +52,6 @@ export class AuthService {
           authenticated: false,
           roles: []
         })
-        //this.user = undefined;
       });
     return true;
   }

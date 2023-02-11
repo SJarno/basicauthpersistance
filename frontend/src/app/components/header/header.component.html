@@ -7,7 +7,7 @@
         <li *hasRole="'ROLE_SUPERUSER'"><a routerLink="active" routerLink="/super-page">Super</a></li>
         <li *hasRole="'ROLE_ADMIN'"><a routerLink="active" routerLink="/admin-page">Admin</a></li>
         <li *isAuthenticated="false"><a routerLinkActive="active" routerLink="/login">Login</a></li>
-        <li *isAuthenticated="true"><a  (click)="logout()">Logout</a></li>
+        <li class="logout-btn" *isAuthenticated="true"><a  (click)="logout()" >Logout</a></li>
       </ul>
     </nav>
   </header>

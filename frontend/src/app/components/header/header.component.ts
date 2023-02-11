@@ -27,17 +27,9 @@ export class HeaderComponent implements OnInit {
     const logoutResult = this.authService.logout();
     console.log('Logout result == ', logoutResult);
     if (logoutResult) {
-      //this.user = undefined;
+      this.user = undefined;
       this.router.navigateByUrl('/login');
     }
   }
-  /* isAuthenticated() {
-    return this.user?.authenticated;
-  } */
-  /* hasRole(role: string) {
-    const roles: Role[] | undefined = this.user?.roles;
-    return roles?.some(r => r.authority == role) || false;
-
-  } */
 
 }
