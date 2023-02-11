@@ -36,10 +36,6 @@ jobs:
       with:
         paths: frontend
 
-    - name: Print current working directory
-      run: ls -alt
-      working-directory: frontend
-
     - name: Set up NodeJS
       uses: actions/setup-node@v2
       with:
