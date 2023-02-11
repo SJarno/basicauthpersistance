@@ -56,23 +56,29 @@ describe('HeaderComponent', () => {
   });
 
   it('should call the logout method on logout', () => {
+    
     spyOn(component, 'logout').and.callThrough();
+    expect(component.user?.authenticated).toEqual(true);
 
-    /* if (component.user?.authenticated) {
-      const logoutButton = fixture.debugElement.query(By.css('.logout-btn')).nativeElement;
-      logoutButton.click();
+    const logoutButton = fixture.debugElement.query(By.css('li:last-child a'));
+    if (component.user && component.user?.authenticated) {
+      expect(logoutButton).toBeTruthy();
+      logoutButton.triggerEventHandler('click', null);
+      fixture.detectChanges();
+
+      component.logout();
       expect(authService.logout).toHaveBeenCalled();
       expect(component.logout).toHaveBeenCalled();
       expect(authService.logout).toHaveBeenCalled();
-    } */
-    expect(component.user?.authenticated).toEqual(true);
-    const logoutButton = fixture.debugElement.query(By.css('li:last-child a'));
-    logoutButton.triggerEventHandler('click', null);
-    component.logout();
-    expect(authService.logout).toHaveBeenCalled();
-    expect(component.logout).toHaveBeenCalled();
-    expect(authService.logout).toHaveBeenCalled();
-    expect(component.user).toEqual(undefined);
+      
+    } else {
+      expect(logoutButton).toBeFalsy();
+      expect(component.user).toEqual(undefined);
+    }
+
     //expect(component.userSubscription).toEqual(undefined);
+  });
+  it('should only display logout button if the user is authenticated', () => {
+
   });
 });

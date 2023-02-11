@@ -28,5 +28,19 @@ jobs:
     - name: Generate Jacoco coverage report
       run: gradle jacocoTestReport
       
-    - name: Data to codecov
+    - name: Backend coverage to Codecov
+      run: bash <(curl -s https://codecov.io/bash)
+      
+    - name: Set up NodeJS
+      uses: actions/setup-node@v2
+      with:
+        node-version: 14
+
+    - name: Install Angular dependencies
+      run: npm ci
+
+    - name: Run Angular tests and generate coverage report
+      run: ng test --no-watch --code-coverage
+
+    - name: Send frontend coverage to Codecov
       run: bash <(curl -s https://codecov.io/bash)
