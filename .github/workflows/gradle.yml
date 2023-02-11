@@ -38,20 +38,26 @@ jobs:
 
     - name: Print current working directory
       run: ls -alt
+      working-directory: frontend
 
     - name: Set up NodeJS
       uses: actions/setup-node@v2
       with:
         node-version: 14
+      #working-directory: frontend
 
     - name: Install Angular dependencies
       run: npm ci
+      working-directory: frontend
 
     - name: Install npm dependencies
       run: npm install
+      working-directory: frontend
 
     - name: Run Angular tests and generate coverage report
       run: ng test --no-watch --code-coverage
+      working-directory: frontend
 
     - name: Send frontend coverage to Codecov
       run: bash <(curl -s https://codecov.io/bash)
+      working-directory: frontend
