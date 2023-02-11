@@ -34,7 +34,7 @@ jobs:
     - name: Check out frontend code
       uses: actions/checkout@v2
       with:
-        path: frontend
+        paths: frontend
 
     - name: Print current working directory
       run: ls -alt
