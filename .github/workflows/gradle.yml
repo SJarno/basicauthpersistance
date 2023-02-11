@@ -50,7 +50,7 @@ jobs:
       working-directory: frontend
     
     - name: Install Angular CLI
-      run: run: npm install -g @angular/cli
+      run: npm install -g @angular/cli
 
     - name: Install Angular dependencies
       run: npm ci
