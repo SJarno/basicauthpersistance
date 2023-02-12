@@ -9,7 +9,7 @@ Some testing and practice for future reference. Main goal is to update Spring Se
 
 ## Requirements
 - Node v.16.14.2
-- Angular v.14
+- Angular v.15
 - Spring Boot 3.0.2
 - Java 17
 - Gradle 7.6
