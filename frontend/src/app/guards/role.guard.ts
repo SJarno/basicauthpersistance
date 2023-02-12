@@ -20,19 +20,6 @@ export class RoleGuard implements CanActivate {
 
     const requiredRole = next.data['role'];
 
-    /* return this.authService.userSubject.pipe(
-      first(),
-      map(user => {
-        if (user.authenticated) {
-          console.log('Guard == Is authenticated');
-          const roles: Role[] | undefined = user.roles;
-          return roles?.some(r => r.authority == requiredRole) || false;
-        } else {
-          console.log('Guard == not authenticated');
-          this.router.navigate(['/']);
-          return false;
-        }
-      })); */
     return this.authService.authenticate(undefined).pipe(
       first(),
       map((user: AuthResponse) => {
