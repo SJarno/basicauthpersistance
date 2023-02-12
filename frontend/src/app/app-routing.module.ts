@@ -23,7 +23,11 @@ const routes: Routes = [
     canActivate: [RoleGuard],
     data: { role: 'ROLE_SUPERUSER' }
   },
-  { path: 'admin-page', component: AdminComponent },
+  { path: 'admin-page', 
+    component: AdminComponent, 
+    canActivate: [RoleGuard], 
+    data: { role: 'ROLE_ADMIN' } },
+    
   { path: '**', pathMatch: 'full', redirectTo: 'home' }
 ];
 

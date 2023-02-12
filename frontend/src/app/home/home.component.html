@@ -1,6 +1,6 @@
 <ng-container>
 	<h1>Greeting</h1>
-	<div *ngIf="greeting" [hidden]="!isAuthenticated()">
+	<div class="greeting-message" *ngIf="greeting" [hidden]="!isAuthenticated()" data-testid="greeting-message">
 		<p>The ID is {{ greeting.id }}</p>
 		<p>The content is {{ greeting.content }}</p>
 		<h2>Athenticated as : {{ getUserName() }} </h2>
@@ -8,7 +8,7 @@
 		<p *ngFor="let role of getUserRoles()">{{ role.authority }}</p>
 		<p>User Role specific: {{ userData | json }} </p>
 	</div>
-	<div [hidden]="isAuthenticated()">
+	<div class="login-message" data-testid="login-message" [hidden]="isAuthenticated()">
 		<p>Login to see your greeting</p>
 	</div>
 </ng-container>
